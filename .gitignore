@@ -1,0 +1,23 @@
+# Python caches
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Local environment / IDE
+.vscode/
+.idea/
+venv/
+.env
+
+# Large archives and local datasets
+*.zip
+extracted_ipl_csv/
+inspect_files.py
+inspect_ball_file.py
+check_db.py
+test_urls.py
+download_and_extract.py
+
+# Power BI backups (optional temporary files)
+*.tmp
+*.backup
