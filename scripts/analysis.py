@@ -87,7 +87,13 @@ df_venues_scoring = print_query_results("Highest Scoring Stadiums (Avg Match Run
 print("\n=== Generating EDA Charts ===")
 
 # Set visual style
-plt.style.use('seaborn-v0_8-whitegrid')
+try:
+    plt.style.use('seaborn-v0_8-whitegrid')
+except Exception:
+    try:
+        plt.style.use('seaborn-whitegrid')
+    except Exception:
+        plt.style.use('ggplot')
 plt.rcParams['font.family'] = 'sans-serif'
 plt.rcParams['font.sans-serif'] = ['DejaVu Sans', 'Arial', 'Helvetica']
 

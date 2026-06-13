@@ -139,7 +139,7 @@ print("Loading ball-by-ball delivery files...")
 master_csv_path = os.path.join(CRICSHEET_DIR, "all_matches.csv")
 if os.path.exists(master_csv_path):
     print("Found Cricsheet master deliveries file 'all_matches.csv'. Loading directly...")
-    df_deliveries = pd.read_csv(master_csv_path)
+    df_deliveries = pd.read_csv(master_csv_path, low_memory=False)
 else:
     print("Master deliveries file not found. Fallback to merging individual match files...")
     ball_csv_paths = glob.glob(os.path.join(CRICSHEET_DIR, "*.csv"))

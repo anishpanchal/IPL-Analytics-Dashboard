@@ -11,7 +11,7 @@ matches_table = Table(
     'matches', metadata,
     Column('match_id', Integer, primary_key=True),
     Column('date', Date),
-    Column('season', String(50)),
+    Column('season', String(50), index=True),
     Column('city', String(100)),
     Column('venue', String(255)),
     Column('team1', String(100)),
@@ -35,14 +35,14 @@ matches_table = Table(
     Column('overs_limit', Integer),
     Column('team1_players', Text),
     Column('team2_players', Text),
-    Column('year', Integer)
+    Column('year', Integer, index=True)
 )
 
 # Define the deliveries table
 deliveries_table = Table(
     'deliveries', metadata,
     Column('id', Integer, primary_key=True, autoincrement=True),
-    Column('match_id', Integer, ForeignKey('matches.match_id')),
+    Column('match_id', Integer, ForeignKey('matches.match_id'), index=True),
     Column('season', String(50)),
     Column('start_date', Date),
     Column('venue', String(255)),
@@ -51,9 +51,9 @@ deliveries_table = Table(
     Column('actual_delivery', Integer),
     Column('batting_team', String(100)),
     Column('bowling_team', String(100)),
-    Column('batsman', String(100)),
+    Column('batsman', String(100), index=True),
     Column('non_striker', String(100)),
-    Column('bowler', String(100)),
+    Column('bowler', String(100), index=True),
     Column('batsman_runs', Integer),
     Column('extras', Integer),
     Column('wides', Integer),
@@ -85,7 +85,7 @@ df_matches = pd.read_csv("IPL_Project/data/matches.csv")
 df_matches['date'] = pd.to_datetime(df_matches['date'])
 
 print("Loading cleaned deliveries from CSV...")
-df_deliveries = pd.read_csv("IPL_Project/data/deliveries.csv")
+df_deliveries = pd.read_csv("IPL_Project/data/deliveries.csv", low_memory=False)
 df_deliveries['start_date'] = pd.to_datetime(df_deliveries['start_date'])
 
 # Handle Boolean or float issues for boolean fields
